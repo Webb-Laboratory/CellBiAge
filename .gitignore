@@ -19,3 +19,4 @@ bin-release/
 
 .idea
 data/
+**/__pycache__
