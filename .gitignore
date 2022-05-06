@@ -20,3 +20,4 @@ bin-release/
 .idea
 data/
 **/__pycache__
+code/scCaps/data_Neuron.npy

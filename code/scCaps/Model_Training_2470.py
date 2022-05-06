@@ -3,10 +3,11 @@
 
 import numpy as np
 from Capsule_Keras import *
-from keras import utils
-from keras.models import Model
-from keras.layers import *
-from keras import backend as K
+# import tensorflow.keras
+from tensorflow.keras import utils
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import *
+from tensorflow.keras import backend as K
 from sklearn.model_selection import train_test_split
 import sys
 import argparse

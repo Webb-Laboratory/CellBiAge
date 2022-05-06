@@ -1,10 +1,10 @@
 #! -*- coding: utf-8 -*-
 # codes from https://github.com/bojone/Capsule and https://kexue.fm/archives/5112
 
-from keras import activations
-from keras import backend as K
-from keras.engine.topology import Layer
-#from tensorflow.keras.layers import Layer
+from tensorflow.keras import activations
+from tensorflow.keras import backend as K
+# from keras.engine.topology import Layer
+from tensorflow.keras.layers import Layer
 
 def squash(x, axis=-1):
     s_squared_norm = K.sum(K.square(x), axis, keepdims=True) + K.epsilon()
