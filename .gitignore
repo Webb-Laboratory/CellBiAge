@@ -21,3 +21,4 @@ bin-release/
 data/
 **/__pycache__
 code/scCaps/data_Neuron.npy
+.DS_Store
