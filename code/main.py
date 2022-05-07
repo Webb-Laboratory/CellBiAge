@@ -1,3 +1,4 @@
+import pandas as pd
 import tensorflow as tf
 import numpy as np
 from sklearn.decomposition import PCA
@@ -46,9 +47,11 @@ def main():
     # print(np.sum(test_y)/len(test_y))
 
     # xgboost
+    df = pd.read_csv("../data/adata_df_2k_grouped.csv")
+    X, y = df.iloc[:, 1:-4], df["target"]
     xgb = Model.Baseline_XGB("../data/adata_df_2k_grouped.csv", need_train=True)
     xgb.train()
-    xgb.test(test_X, test_y)
+    xgb.test(X, y)
 
 if __name__ == '__main__':
     main()

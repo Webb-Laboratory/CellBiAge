@@ -16,9 +16,9 @@ class Baseline_XGB:
 
     def __init__(self, data_path, k_fold=5, need_train=False):
         self.model = XGBClassifier(use_label_encoder=False)
-        self.param_grid = {'xgbclassifier__max_depth': [1, 3],
-                           "xgbclassifier__learning_rate": [0.03],
-                           'xgbclassifier__colsample_bytree': [0.9],
+        self.param_grid = {'xgbclassifier__max_depth': [10, 15],
+                           "xgbclassifier__learning_rate": [0.08, 0.15],
+                           'xgbclassifier__colsample_bytree': [0.7, 0.8],
                            'xgbclassifier__subsample': [0.66],
                            'xgbclassifier__eval_metric': ['logloss']}
         self.data_path = data_path
@@ -42,23 +42,26 @@ class Baseline_XGB:
     def start_GridSearch(self, X, y):
         models = []
         scores = []
-        for i in tqdm(range(10)):
+        for i in tqdm(range(2)):
             grid, test_score = self.ML_pipeline_GridSearchCV(X, y, self.model, self.param_grid, i, self.k_fold)
             print(grid.best_params_)
             print('best CV score:', grid.best_score_)
             print('test score:', test_score)
-            models.append(grid)
+            models.append(grid.best_estimator_)
             scores.append(test_score)
 
         return models, scores
 
     def find_best(self, models, scores):
-        data = {"model": [models[i][-1] for i in range(0, self.k_fold)], "scores": scores}
+        '''
+        data = {"model": [models[i][-1] for i in range(2)], "scores": scores}
         result = pd.DataFrame(data=data)
         result["model"] = result["model"].astype(str)
         average_performance = result.groupby(["model"]).mean()
         average_performance = average_performance.reset_index()
         return eval(average_performance.loc[average_performance['scores'].idxmax()][0])
+        '''
+        return models[scores.index(max(scores))]
 
     def save_model(self, best_model):
         parent_dir, file = os.path.split(self.model_path)
