@@ -26,12 +26,8 @@ class Baseline_XGB:
         self.need_train = need_train
         self.k_fold = k_fold
 
-    def train(self):
+    def train(self, X, y):
         if self.need_train:
-            df = pd.read_csv(self.data_path)
-            X, y = np.array(df.iloc[:, 1:-4]).astype(dtype=np.float32), np.array(df["target"]).astype(dtype=np.float32)
-
-
             models, scores = self.start_GridSearch(X, y)
             best_model = self.find_best(models, scores)
             self.save_model(best_model)

@@ -55,7 +55,7 @@ def main():
 
     ##################XGBOOST#####################
     xgb = Model.Baseline_XGB("../data/adata_df_2k_grouped.csv", need_train=True)
-    xgb.train()
+    xgb.train(train_X, test_X)
     xgb.test(test_X, test_y)
 
 
