@@ -20,5 +20,5 @@ bin-release/
 .idea
 data/
 **/__pycache__
-code/scCaps/data_Neuron.npy
-.DS_Store
+**/.DS_Store
+**/scCaps/

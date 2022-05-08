@@ -9,6 +9,7 @@ from tqdm import tqdm
 import pickle
 import os
 import tensorflow as tf
+import numpy as np
 
 
 class Baseline_XGB:
@@ -28,7 +29,8 @@ class Baseline_XGB:
     def train(self):
         if self.need_train:
             df = pd.read_csv(self.data_path)
-            X, y = df.iloc[:, 1:-4], df["target"]
+            X, y = np.array(df.iloc[:, 1:-4]).astype(dtype=np.float32), np.array(df["target"]).astype(dtype=np.float32)
+
 
             models, scores = self.start_GridSearch(X, y)
             best_model = self.find_best(models, scores)

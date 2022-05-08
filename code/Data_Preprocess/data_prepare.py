@@ -37,7 +37,7 @@ def prepare_data(path, target_dir=None, *preprocesses):
 
     input = (pd.read_csv(path)).iloc[:, 1:]  # exclude index col
     label = input['target']
-    data = input.drop(columns=["target"])
+    data = input.drop(columns=["target", "animal"])
 
     for one_preprocess in preprocesses:
         data = one_preprocess(data)

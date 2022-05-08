@@ -8,26 +8,24 @@ from loss_visualization import visualize_plots
 
 
 def main():
-    train_X, test_X, train_y, test_y = Data_Preprocess.load_train_and_test("../data/adata_df_2k_grouped_with_cate_vars",
+    train_X, test_X, train_y, test_y = Data_Preprocess.load_train_and_test("../data/adata_df_2k_grouped_without_cate",
                                                                            "../data/adata_df_2k_grouped.csv",
-                                                                           Data_Preprocess.onehot_encoding)
+                                                                           Data_Preprocess.exclude_cate)
 
     ##################baseline MLP#####################
-    baseline_model = Model.Baseline_MLP(feature_nums=[500, 100, 50, 25])
-
-    baseline_model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.0002),
-                           loss=tf.keras.losses.BinaryCrossentropy(),
-                           metrics=[tf.keras.metrics.BinaryAccuracy(),
-                                    tf.keras.metrics.AUC()])
-    history = baseline_model.fit(
-        train_X, train_y,
-        validation_data=(test_X, test_y),
-        epochs=50,
-        batch_size=100,
-        verbose=2,
-        # shuffle=True,  # add shuffle here
-        # validation_split=0.2  # validation split for plots
-    )
+    # baseline_model = Model.Baseline_MLP(feature_nums=[100, 50, 25], dropout_rate=0.25)
+    #
+    # baseline_model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.0002),
+    #                        loss=tf.keras.losses.BinaryCrossentropy(),
+    #                        metrics=[tf.keras.metrics.BinaryAccuracy(),
+    #                                 tf.keras.metrics.AUC()])
+    # history = baseline_model.fit(
+    #     train_X, train_y,
+    #     validation_data=(test_X, test_y),
+    #     epochs=50,
+    #     batch_size=100,
+    #     verbose=2
+    # )
 
     # testing_result = baseline_model.evaluate(test_X, test_y, verbose=0)
     # visualize_plots(history)
@@ -49,8 +47,6 @@ def main():
     #     epochs=1000,
     #     batch_size=500,
     #     verbose=2,
-    #     # shuffle = True,#add shuffle here
-    #     # validation_split=0.2 #validation split for plots
     # )
     # pca_testing_result = pca_model.evaluate(pca_test_X, test_y, verbose=2)
     # visualize_plots(history)
@@ -58,13 +54,9 @@ def main():
     # print(np.sum(test_y)/len(test_y))
 
     ##################XGBOOST#####################
-    # df = pd.read_csv("../data/adata_df_2k_grouped.csv")
-    # X, y = df.iloc[:, 1:-4], df["target"]
-    # xgb = Model.Baseline_XGB("../data/adata_df_2k_grouped.csv", need_train=True)
-    # xgb.train()
-    # xgb.test(X, y)
-
-    pass
+    xgb = Model.Baseline_XGB("../data/adata_df_2k_grouped.csv", need_train=True)
+    xgb.train()
+    xgb.test(test_X, test_y)
 
 
 if __name__ == '__main__':
