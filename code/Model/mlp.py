@@ -13,7 +13,7 @@ class Baseline_MLP(tf.keras.Model):
         self.mlp = tf.keras.Sequential()
         for i in feature_nums:
             self.mlp.add(tf.keras.layers.Dense(i, activation='relu', kernel_initializer=self.initializer))
-            self.mlp.add(tf.keras.layers.Dropout(0.25, ) )
+            self.mlp.add(tf.keras.layers.Dropout(0.25) )
        
         #self.mlp = tf.keras.Sequential([tf.keras.layers.Dense(i, activation='relu', kernel_initializer=self.initializer) for i in feature_nums] )                              
                                 
