@@ -15,14 +15,13 @@ import numpy as np
 class Baseline_XGB:
     model_path = '../results/xgbc_best.save'
 
-    def __init__(self, data_path, k_fold=5, need_train=False):
+    def __init__(self, k_fold=5, need_train=False):
         self.model = XGBClassifier(use_label_encoder=False)
         self.param_grid = {'xgbclassifier__max_depth': [10, 15],
                            "xgbclassifier__learning_rate": [0.08, 0.15],
                            'xgbclassifier__colsample_bytree': [0.7, 0.8],
                            'xgbclassifier__subsample': [0.66],
                            'xgbclassifier__eval_metric': ['logloss']}
-        self.data_path = data_path
         self.need_train = need_train
         self.k_fold = k_fold
 
@@ -80,21 +79,21 @@ class Baseline_XGB:
         kf = KFold(n_splits=n_folds, shuffle=True, random_state=random_state)
         # onehotencoder for the categorical feature -- tree.ident
 
-        cont_ftrs = list(X_other)[1:]
-
-        # standard scaler for continuous feature
-        numeric_transformer = Pipeline(steps=[
-            ('scaler', StandardScaler())])
-
-        preprocessor = ColumnTransformer(
-            transformers=[
-                ('num', numeric_transformer, cont_ftrs)
-            ])
+        # cont_ftrs = list(X_other)[1:]
+        #
+        # # standard scaler for continuous feature
+        # numeric_transformer = Pipeline(steps=[
+        #     ('scaler', StandardScaler())])
+        #
+        # preprocessor = ColumnTransformer(
+        #     transformers=[
+        #         ('num', numeric_transformer, cont_ftrs)
+        #     ])
 
         clf.set_params(seed=random_state)
 
         # create the pipeline: preprocessor + supervised ML method
-        pipe = make_pipeline(preprocessor, clf)
+        pipe = make_pipeline(clf)
 
         # prepare gridsearch
         grid = GridSearchCV(pipe, param_grid=param_grid, scoring=make_scorer(accuracy_score),

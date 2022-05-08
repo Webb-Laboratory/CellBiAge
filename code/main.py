@@ -54,8 +54,8 @@ def main():
     # print(np.sum(test_y)/len(test_y))
 
     ##################XGBOOST#####################
-    xgb = Model.Baseline_XGB("../data/adata_df_2k_grouped.csv", need_train=True)
-    xgb.train(train_X, test_X)
+    xgb = Model.Baseline_XGB(need_train=True)  # once trained, set `need_train` to false to let model load local parameters
+    xgb.train(train_X, train_y)
     xgb.test(test_X, test_y)
 
 
