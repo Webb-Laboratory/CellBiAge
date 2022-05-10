@@ -22,4 +22,9 @@ data/
 **/__pycache__
 **/.DS_Store
 **/scCaps/
-results/
+try/dca_input.csv
+try/dca.py
+try/latent.tsv
+try/mean.tsv
+try/tsv_to_csv.py
+try/results/model.pickle

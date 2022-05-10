@@ -21,6 +21,8 @@ class Dense_AE(tf.keras.Model):
         decoded = self.decoder(encoded)
         return decoded
 
-
+    def encode(self, x):
+        result = self.encoder(x)
+        return result
 
 
