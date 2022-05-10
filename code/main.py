@@ -14,7 +14,7 @@ def main():
 
     train_X, test_X, train_y, test_y = Data_Preprocess.load_train_and_test("./data/adata_df_2k_grouped_without_cate_binarized",
                                                                            "./data/adata_df_2k_grouped.csv",
-                                                                           Data_Preprocess.exclude_cate, Data_Preprocess.binarize)
+                                                                           Data_Preprocess.exclude_cate, Data_Preprocess.onehot_encoding)
 
     ##################baseline MLP#####################
     # baseline_model = Model.Baseline_MLP(feature_nums=[160, 50, 25], dropout_rate=0.25)
@@ -68,16 +68,25 @@ def main():
                       loss=tf.keras.losses.BinaryCrossentropy(),
                       metrics=[tf.keras.metrics.BinaryAccuracy(), tf.keras.metrics.AUC()])
     
-    history = autoencoder_model.fit(
-        train_X, train_y,
-        validation_data=(test_X, test_y),
+    ae_train_X = autoencoder_model.encode(train_X)
+    ae_test_X = autoencoder_model.encode(test_X)
+    
+    ae_model = Model.Baseline_MLP(feature_nums=[64, 32, 16, 8])
+    ae_model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
+                      loss=tf.keras.losses.BinaryCrossentropy(),
+                      metrics=[tf.keras.metrics.BinaryAccuracy(), tf.keras.metrics.AUC()])
+    
+    history = ae_model.fit(
+        ae_train_X, train_y,
+        validation_data=(ae_test_X, test_y),
         epochs=20,
         batch_size=1000,
         verbose=2,
     )
     
-    testing_result = autoencoder_model.evaluate(test_X, test_y, verbose=0)
+    testing_result = ae_model.evaluate(ae_test_X, test_y, verbose=0)
     visualize_plots(history)
+    print(dict(zip(ae_model.metrics_names, testing_result)))
 
 if __name__ == '__main__':
     main()
