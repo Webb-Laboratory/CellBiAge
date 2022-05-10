@@ -1,13 +1,13 @@
+import os
+
 from matplotlib import pyplot as plt
 
-def visualize_plots(history):
+def visualize_plots(history, store_dir=None):
     """
     Uses Matplotlib to visualize the losses and metrics of our model.
     :param history: dictionary of losses and metrics for train and validation data return from model.fit()
     :return: doesn't return anything, three plots should pop-up
     """
-
-    # print(history.history.keys()) # list all data in history
 
     # summarize history for accuracy
     plt.plot(history.history['binary_accuracy'])
@@ -16,6 +16,8 @@ def visualize_plots(history):
     plt.ylabel('binary_accuracy')
     plt.xlabel('epoch')
     plt.legend(['train', 'validation'], loc='upper left')
+    if store_dir:
+        plt.savefig(os.path.join(store_dir, "accuracy_plot.png"))
     plt.show()
 
     # summarize history for loss
@@ -25,6 +27,8 @@ def visualize_plots(history):
     plt.ylabel('loss')
     plt.xlabel('epoch')
     plt.legend(['train', 'validation'], loc='upper left')
+    if store_dir:
+        plt.savefig(os.path.join(store_dir, "loss_plot.png"))
     plt.show()
 
     # summarize history for AUC
@@ -34,4 +38,6 @@ def visualize_plots(history):
     plt.ylabel('auc')
     plt.xlabel('epoch')
     plt.legend(['train', 'validation'], loc='upper left')
+    if store_dir:
+        plt.savefig(os.path.join(store_dir, "auc_plot.png"))
     plt.show()
