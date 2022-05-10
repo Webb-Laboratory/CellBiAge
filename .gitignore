@@ -28,3 +28,4 @@ try/latent.tsv
 try/mean.tsv
 try/tsv_to_csv.py
 try/results/model.pickle
+results/
