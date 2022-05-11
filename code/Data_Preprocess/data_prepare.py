@@ -37,7 +37,9 @@ def prepare_data(path, target_dir=None, *preprocesses):
 
     input = (pd.read_csv(path)).iloc[:, 1:]  # exclude index col
     label = input['target']
-    data = input.drop(columns=["target", "animal"])
+    
+    #data = input.drop(columns=["target", "animal"])
+    data = input.drop(columns=["target"])
 
     for one_preprocess in preprocesses:
         data = one_preprocess(data)
@@ -47,8 +49,8 @@ def prepare_data(path, target_dir=None, *preprocesses):
 
 
 def main():
-    prepare_data("../../data/adata_df_2k_grouped.csv", onehot_encoding)
-
+    #prepare_data("../../data/adata_df_2k_grouped.csv", onehot_encoding)
+    prepare_data("../data/dca_latent.csv", onehot_encoding)
 
 if __name__ == '__main__':
     main()

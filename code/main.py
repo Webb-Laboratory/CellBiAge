@@ -8,8 +8,9 @@ def main():
     save_dir = "../results"
 
     # define dataset
-    train_X, test_X, train_y, test_y, dataset_name = one_hot_binarized_origin_dataset()
+    #train_X, test_X, train_y, test_y, dataset_name = one_hot_binarized_origin_dataset()
     # train_X, test_X, train_y, test_y, dataset_name = PCA_dataset(without_cate_binarized_dataset, n_components=100)    # if want PCA
+    train_X, test_X, train_y, test_y, dataset_name =  dca_one_hot_cate_binarized_std_dataset()   # if want DCA
 
     # define train parameters
     parameters = train_params(
@@ -23,7 +24,7 @@ def main():
     # define your model
 
     model = Model.Baseline_MLP(feature_nums=[100, 50, 10], dropout_rate=0.25)
-    model_name = "MLP_layer_100_50_10_lr_001_with_cate_bin1888"   # !!!!!! Be sure to change it every time, or your local record will be overwritten
+    model_name = "MLP_layer_100_50_10_lr_001_with_DCA"   # !!!!!! Be sure to change it every time, or your local record will be overwritten
 
 
 
@@ -36,7 +37,7 @@ def main():
     
 
 
-    # #ae encode
+#      #ae encode
 #     ae_model = tf.keras.models.load_model("../results/AE_{}_with_binarized/model".format(latent_num)) 
     
 #     ae_train_X = ae_model.encoder(train_X)
