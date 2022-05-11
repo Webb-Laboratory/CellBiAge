@@ -21,12 +21,33 @@ def main():
     )
 
     # define your model
+
     model = Model.Baseline_MLP(feature_nums=[100, 50, 10], dropout_rate=0.25)
     model_name = "MLP_layer_100_50_10_lr_001_with_cate_bin1888"   # !!!!!! Be sure to change it every time, or your local record will be overwritten
 
-    # Start Training, after trainning, all records will be dumped to the `save_dir/model_name` dir
-    train(os.path.join(save_dir, model_name), model, parameters, train_X, train_y, test_X, test_y, dataset_name)
 
 
+    #latent_num = 400
+    # model = Model.Dense_AE(latent_num)
+    # model_name = "AE_{}_with_binarized".format(latent_num)
+    
+    # # Start Training, after trainning, all records will be dumped to the `save_dir/model_name` dir
+    train(os.path.join(save_dir, model_name), model, parameters, train_X, train_y, test_X , test_y, dataset_name)
+    
+
+
+    # #ae encode
+#     ae_model = tf.keras.models.load_model("../results/AE_{}_with_binarized/model".format(latent_num)) 
+    
+#     ae_train_X = ae_model.encoder(train_X)
+#     ae_test_X = ae_model.encoder(test_X)
+
+    
+#     model = Model.Baseline_MLP(feature_nums= [200, 50, 25], dropout_rate=0.25)
+#     model_name = "AE_with_mlp_{}_binarized".format(latent_num)   # !!!!!! Be sure to change it every time, or your local record will be overwritten
+#     train(os.path.join(save_dir, model_name), model, parameters, ae_train_X, train_y, ae_test_X , test_y, dataset_name)
+
+
+    
 if __name__ == '__main__':
     main()
