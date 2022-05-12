@@ -18,7 +18,7 @@ def softmax(x, axis=-1):
 
 
 class Capsule(Layer):
-    def __init__(self, num_capsule, dim_capsule, routings=3, share_weights=True, activation='squash', **kwargs):
+    def __init__(self, num_capsule, dim_capsule, routings=5, share_weights=True, activation='squash', **kwargs):
         super(Capsule, self).__init__(**kwargs)
         self.num_capsule = num_capsule
         self.dim_capsule = dim_capsule
