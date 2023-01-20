@@ -18,6 +18,14 @@ Other required packages for MLP using GPU:
 module load cuda/11.7.1
 module load cudnn/8.2.0
 ```
+To implement keras tuner for group-based cross validation (MLP): 
+
+in terminal: 
+``` 
+cd scripts
+python3 mlp_kt_4cv_console.py
+```
+
 - For ML models (logistic regression, tree-based models, and SVC):
 
 ```environment_ml.yml```
