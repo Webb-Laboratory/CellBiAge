@@ -1,14 +1,31 @@
 # MLAging
-[Webb laboratory](https://www.webblabatbrown.com/) and [Singh laboratory](https://rsinghlab.org/) @brown
+[Webb laboratory](https://www.webblabatbrown.com/) and [Singh laboratory](https://rsinghlab.org/) @Brown
 
 ML applications in predicting cellcular age using female mouse hypothalamus single nuclei RNAseq. 
 
-### Introduction:
-
-
-
 ### Models tested:
 - Logistic regression with regularization
-- Tree-based models: 
+- Tree-based models
+- Support Vector Machine Classifier (SVC)
+- Multi-Layer Perceptron (MLP)
 
-### Result:
+
+### Virtual Enviroments:
+
+- For MLP: ```requirments_mlp.txt```
+Other required packages for MLP using GPU:
+```
+module load cuda/11.7.1
+module load cudnn/8.2.0
+```
+- For ML models (logistic regression, tree-based models, and SVC):
+
+```environment_ml.yml```
+
+### Dataset 
+[Hajdarovic, K. H., Yu, D., Hassell, L. A., Evans, S. A., Packer, S., Neretti, N., & Webb, A. E. (2022). Single-cell analysis of the aging female mouse hypothalamus. *Nature Aging*, 2(7), 662-678.](https://www.nature.com/articles/s43587-022-00246-4):
+- raw: ```filtered_feature_bc_matrix/``` folder
+- input training and testing count matrix ```.csv```
+
+
+
