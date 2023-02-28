@@ -7,9 +7,15 @@ def binarize_data(df):
     return df
 
 def customized_cv_index(train):
-    index_13, index_24 = train.loc[(train['animal'] == 7)|(train['animal'] == 3),].index, train.loc[(train['animal'] == 8)|(train['animal'] == 4),].index
+    young_1 = train.loc[train.target==0, ].animal.unique()[0]
+    young_2 = train.loc[train.target==0, ].animal.unique()[1]
+
+    aged_1 = train.loc[train.target==1, ].animal.unique()[0]
+    aged_2 = train.loc[train.target==1, ].animal.unique()[1]
     
-    index_14, index_23 = train.loc[(train['animal'] == 7) | (train['animal'] == 4),].index, train.loc[(train['animal'] == 8)|(train['animal'] == 3),].index
+    index_13, index_24 = train.loc[(train['animal'] == young_1)|(train['animal'] == aged_1),].index, train.loc[(train['animal'] == young_2)|(train['animal'] == aged_2),].index
+    
+    index_14, index_23 = train.loc[(train['animal'] == young_1) | (train['animal'] == aged_2),].index, train.loc[(train['animal'] == young_2)|(train['animal'] == aged_1),].index
     
     custom_cv = [(index_13, index_24), 
                  (index_14, index_23),
