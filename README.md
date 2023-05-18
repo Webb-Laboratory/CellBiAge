@@ -1,39 +1,50 @@
 # CellBiAge
 [Webb laboratory](https://www.webblabatbrown.com/) and [Singh laboratory](https://rsinghlab.org/) @Brown
 
-ML/DL applications in predicting cellcular age using mouse brain single cell/nuclei RNAseq. 
+Using [Brown's HPC (OSCAR)](https://docs.ccv.brown.edu/oscar)
 
-### Models tested:
+ML/DL applications in predicting cellcular age using mouse brain single cell/nuclei RNA-seq. 
+
+### 1. Models tested:
 - Logistic regression with regularization
 - Tree-based models
 - Support Vector Machine Classifier (SVC)
-- Multilayer Perceptron (MLP)
+- Multilayer Perceptron (MLP) 
 
+### 2. Virtual Enviroments:
 
-### Virtual Enviroments:
-
-- For MLP: ```requirments_mlp.txt```
-Other required packages for MLP using GPU:
+#### MLP: ```requirments_mlp.txt```
+Other required packages for GPU:
 ```
 module load cuda/11.7.1
 module load cudnn/8.2.0
 ```
-To implement keras tuner for group-based cross validation (MLP): 
+#### ML models (logistic regression, tree-based models, and SVC): ```environment_ml.yml```
 
-in terminal: 
+### 3. Implementation:
+#### MLP: ```.py``` files in the ```/scripts``` folder
+In terminal: 
+To implement MLP KerasTuner for group-based cross validation: 
 ``` 
 cd scripts
 python3 mlp_kt_4cv_console.py
 ```
+To implement the best MLP over 10 random seeds: 
+```
+python3 mlp_rs_console.py
+```
+#### ML: ```.ipynb``` jupyter notebooks in the ```/scripts``` folder
+- ```0x```: different preprocessing methods
+- ```1x```: hypothalamus all-cell models
+- ```2x```: hypothalamus cell type-specific models
+- ```3x```: SVZ all-cell models
+- ```4x```: SVZ cell type-specific models
 
-- For ML models (logistic regression, tree-based models, and SVC):
 
-```environment_ml.yml```
+### 4. [Datasets](https://drive.google.com/drive/folders/1AxRl1PlOIWvgR9lBwkHN-pPNbX9ELou_?usp=sharing)
+Hajdarovic, K. H., Yu, D., Hassell, L. A., Evans, S. A., Packer, S., Neretti, N., & Webb, A. E. (2022). [Single-cell analysis of the aging female mouse hypothalamus](https://www.nature.com/articles/s43587-022-00246-4). *Nature Aging*, 2(7), 662-678.
 
-### [Dataset](https://drive.google.com/drive/folders/1AxRl1PlOIWvgR9lBwkHN-pPNbX9ELou_?usp=sharing)
-[Hajdarovic, K. H., Yu, D., Hassell, L. A., Evans, S. A., Packer, S., Neretti, N., & Webb, A. E. (2022). Single-cell analysis of the aging female mouse hypothalamus. *Nature Aging*, 2(7), 662-678.](https://www.nature.com/articles/s43587-022-00246-4):
-- raw: ```filtered_feature_bc_matrix/``` folder
-- input training and testing count matrix ```.csv```
+Buckley, M. T., Sun, E. D., George, B. M., Liu, L., Schaum, N., Xu, L., ... & Brunet, A. (2023). [Cell-type-specific aging clocks to quantify aging and rejuvenation in neurogenic regions of the brain](https://www.nature.com/articles/s43587-022-00335-4).  *Nature Aging*, 3(1), 121-137.
 
 
 
