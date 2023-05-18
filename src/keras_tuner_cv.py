@@ -27,7 +27,7 @@ class CVTuner(kt.engine.tuner.Tuner):
     def run_trial(self, trial, train_X, train_y, custom_cv):
         val_losses = []
         AUPRC = []
-        early_stopping_cb = tf.keras.callbacks.EarlyStopping(monitor='AUPRC', patience=20)
+        early_stopping_cb = tf.keras.callbacks.EarlyStopping(monitor='AUPRC', patience=10)
         for i in range(len(custom_cv)):
             print('combination', i)
             X_train = train_X.iloc[custom_cv[i][0]]

@@ -15,6 +15,7 @@ data/
 results/
 figures/
 src.egg-info/
-
+svz_singlecell_aging_clocks/
+AgingClock/
 **/__pycache__
 **/.DS_Store
