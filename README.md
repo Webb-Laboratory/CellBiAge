@@ -39,6 +39,7 @@ python3 mlp_rs_console.py
 - ```2x```: hypothalamus cell type-specific models
 - ```3x```: SVZ all-cell models
 - ```4x```: SVZ cell type-specific models
+- ```5x```: Bechmarking results
 
 
 ### 4. [Datasets](https://drive.google.com/drive/folders/1AxRl1PlOIWvgR9lBwkHN-pPNbX9ELou_?usp=sharing)
