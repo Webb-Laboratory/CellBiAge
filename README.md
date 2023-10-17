@@ -1,4 +1,6 @@
 # CellBiAge
+ ![image](graphical_abstract.jpg)
+
 [Webb laboratory](https://www.webblabatbrown.com/) and [Singh laboratory](https://rsinghlab.org/) @Brown
 
 Using [Brown's HPC (OSCAR)](https://docs.ccv.brown.edu/oscar)
