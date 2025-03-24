@@ -50,5 +50,14 @@ Hajdarovic, K. H., Yu, D., Hassell, L. A., Evans, S. A., Packer, S., Neretti, N.
 
 Buckley, M. T., Sun, E. D., George, B. M., Liu, L., Schaum, N., Xu, L., ... & Brunet, A. (2023). [Cell-type-specific aging clocks to quantify aging and rejuvenation in neurogenic regions of the brain](https://www.nature.com/articles/s43587-022-00335-4).  *Nature Aging*, 3(1), 121-137.
 
+Training and testing datasets can be generated using the ```preprocessing.R``` script with the following commands:
+```write.csv(t(as.matrix(sparse_integ1[top2k_hvg_intersect,])), 'test_hvg2k_std_integrated.csv')```
+```write.csv(t(as.matrix(sparse_integ2[top2k_hvg_intersect,])), 'train_hvg2k_std_integrated.csv')```
+
+Alternatively, feel free to use the already processed files available here:
+
+[```train_final_group_info.csv``` ](https://drive.google.com/file/d/1YiSg1ck-VTnfIcDCW81P1oRzfmu9CCCb/view?usp=drive_link)
+
+[```test_final_group_info.csv```:](https://drive.google.com/file/d/1ce0V4SYZmfhMEQEFsWIQEMuFM4StFXrj/view?usp=drive_link)
 
 
