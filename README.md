@@ -58,6 +58,6 @@ Alternatively, feel free to use the already processed files available here:
 
 [```train_final_group_info.csv``` ](https://drive.google.com/file/d/1YiSg1ck-VTnfIcDCW81P1oRzfmu9CCCb/view?usp=drive_link)
 
-[```test_final_group_info.csv```:](https://drive.google.com/file/d/1ce0V4SYZmfhMEQEFsWIQEMuFM4StFXrj/view?usp=drive_link)
+[```test_final_group_info.csv```](https://drive.google.com/file/d/1ce0V4SYZmfhMEQEFsWIQEMuFM4StFXrj/view?usp=drive_link)
 
 
